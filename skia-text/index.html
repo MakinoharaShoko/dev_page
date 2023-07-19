@@ -4,11 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skia Test</title>
-  <script type="module" crossorigin src="./assets/index.0bf7f19e.js"></script>
+  <script type="module" crossorigin src="./assets/index.f71e36cc.js"></script>
   <link rel="stylesheet" href="./assets/index.3ff5fd20.css">
 </head>
 <body>
   <div id="root"></div>
   
+  <script>
+    /**
+     * 注册 Service Worker
+     */
+    const u = navigator.userAgent;
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // 判断是否是 iOS终端
+    if ("serviceWorker" in navigator && !isIOS) {
+      navigator.serviceWorker.register("./webgal-serviceworker.js").then(function (reg) {
+        // registration worked
+        console.log("Registration succeeded. Scope is " + reg.scope);
+      }).catch(function (error) {
+        // registration failed
+        console.log("Registration failed with " + error);
+      });
+    }
+  </script>
 </body>
 </html>
